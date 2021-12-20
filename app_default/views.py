@@ -1,21 +1,23 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import context, loader
+from django.http import HttpResponse, Http404
 
 from .models import Question
 
 # Create your views here.
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('app_default/index.html') # 생성한 template을 불러오는 함수다. default path는 views.py가 존재하는 폴더 내의 templates폴더를 root로 한다.
     context = {
         'latest_question_list' : latest_question_list,
     }
-    return HttpResponse(template.render(context, request)) # render 함수를 이용하여 template(index.html)에 데이터를 전송한다. 전송하는 구조는 dict다. -> dict의 key가 template 변수가 되는거다.
+    return render(request, 'app_default/index.html', context) # loder함수를 이용해서 template을 출력하는 방식말고 render 함수로 사용하여 편리하게 응답하기.
 
 
 def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." %question_id)
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist") # 해당 DB내의 데이터가 존재하지 않을 경우 404 error를 발생해라!
+    return render(request, 'app_default/detail.html', {'question' : question})
 
 
 def result(request, question_id):
