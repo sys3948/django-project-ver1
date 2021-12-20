@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 
 from .models import Question
 
@@ -13,10 +13,7 @@ def index(request):
 
 
 def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist") # 해당 DB내의 데이터가 존재하지 않을 경우 404 error를 발생해라!
+    question = get_object_or_404(Question, pk=question_id) # 404 error를 발생시키기 위해서는 Http404객체를 사용해야한다. 그러나 그 방법보다 더 편한 객체(get_object_or_404)를 이용하는 방법.
     return render(request, 'app_default/detail.html', {'question' : question})
 
 
