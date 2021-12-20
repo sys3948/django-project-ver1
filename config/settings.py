@@ -30,7 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ # 현재 프로젝트에서 사용하는 앱의 목록을 기록하고 관리하는 리스트. 생성된 프로젝트들을 장고프로젝트에 연결하기 위한 리스트로 생성된 프로젝트의 apps.py의 Config 객체를 연결해주면된다.
+    'app_default.apps.AppDefaultConfig', # 여기서 app_default.apps.AppDefaultConfig는 app_default 프로젝트(폴더) 안에 apps.py의 AppDefaultConfig Class를 의미한다.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
