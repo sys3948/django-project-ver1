@@ -1,6 +1,6 @@
 from django.db import models
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
@@ -20,7 +20,7 @@ class DetailView(generic.DetailView):
     template_name = 'app_default/detail.html'
 
 
-class ResultsView(generic.DeleteView):
+class ResultsView(generic.DetailView):
     models = Question
     template_name = 'app_default/result.html'
 
@@ -28,7 +28,7 @@ class ResultsView(generic.DeleteView):
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
-        pass
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'app_default/default.html', {
             'question' : question,
