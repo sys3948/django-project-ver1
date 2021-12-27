@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for bookmark in object_list %}
+        {% for bookmark in object_list %} <!-- generic view에서는 모델의 object가 여러 개일 경우 object_list라는 변수로 전달한다. -->
         <tr>
             <td>{{ forloop.counter }}</td>
             <td><a href="#">{{bookmark.site_name}}</a></td>
