@@ -20,4 +20,5 @@ urlpatterns = [
     path('app_default/', include('app_default.urls')), # include는 다른 ulrs.py 파일을 참조할 수 있도록 한다. 그러니까 URI에 /app_default 이후 uri는 app_default 폴더 안에 존재하는 urls.py에서 검색하여 응답해준다는 의미이다.
     path('bookmark/', include('bookmark.urls')),
     path('admin/', admin.site.urls),
+    path('', include('photo.urls')),
 ]
