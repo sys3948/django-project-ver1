@@ -40,6 +40,7 @@ INSTALLED_APPS = [ # 현재 프로젝트에서 사용하는 앱의 목록을 기
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmark',
+    'photo',
 ]
 
 MIDDLEWARE = [
