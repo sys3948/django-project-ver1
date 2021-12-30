@@ -23,6 +23,7 @@ urlpatterns = [
     path('bookmark/', include('bookmark.urls')),
     path('admin/', admin.site.urls),
     path('', include('photo.urls')),
+    path('account/', include('accounts.urls')),
 ]
 
 

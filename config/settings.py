@@ -41,6 +41,7 @@ INSTALLED_APPS = [ # 현재 프로젝트에서 사용하는 앱의 목록을 기
     'django.contrib.staticfiles',
     'bookmark',
     'photo',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/' # login 후 redirect하는 url
